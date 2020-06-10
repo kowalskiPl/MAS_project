@@ -1,5 +1,7 @@
+package Person;
+
 import javax.persistence.Entity;
 
-@Entity(name = "JuniorEngineer")
+@Entity(name = "Person.JuniorEngineer")
 public class JuniorEngineer extends Employee {
 }

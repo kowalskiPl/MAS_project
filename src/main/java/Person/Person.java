@@ -1,3 +1,5 @@
+package Person;
+
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -14,10 +16,10 @@ public class Person {
     @NotNull
     protected String secondName;
 
-    public Person() {
+    protected Person() {
     }
 
-    public Person(String firstName, String secondName) {
+    protected Person(String firstName, String secondName) {
         this.firstName = firstName;
         this.secondName = secondName;
     }
