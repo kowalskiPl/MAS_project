@@ -1,4 +1,4 @@
-package Person;
+package model.Person;
 
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.GenericGenerator;

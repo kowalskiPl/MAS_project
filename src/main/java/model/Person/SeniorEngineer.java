@@ -1,10 +1,10 @@
-package Person;
+package model.Person;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
-@Entity(name = "Person.SeniorEngineer")
+@Entity(name = "model.Person.SeniorEngineer")
 public class SeniorEngineer extends Employee {
 
     public enum Specialization {

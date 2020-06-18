@@ -1,4 +1,4 @@
-package Parts;
+package model.Parts;
 
 import javax.persistence.Entity;
 import java.util.Date;
@@ -12,9 +12,9 @@ public class PistonEngine extends Engine {
     }
 
     public PistonEngine(String serialNumber, String manufacturer, int usageTime, Date creationDate,
-                        int minimumRotationSpeed, int maximumRotationSpeed, int pistonCount,
+                        double power, int minimumRotationSpeed, int maximumRotationSpeed, int pistonCount,
                         double nominalOilPressure) {
-        super(serialNumber, manufacturer, usageTime, creationDate, minimumRotationSpeed, maximumRotationSpeed);
+        super(serialNumber, manufacturer, usageTime, creationDate, power, minimumRotationSpeed, maximumRotationSpeed);
         this.pistonCount = pistonCount;
         this.nominalOilPressure = nominalOilPressure;
     }

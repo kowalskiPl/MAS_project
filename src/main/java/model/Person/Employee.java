@@ -1,8 +1,8 @@
-package Person;
+package model.Person;
 
 import javax.persistence.Entity;
 
-@Entity(name = "Person.Employee")
+@Entity(name = "model.Person.Employee")
 public class Employee extends Person {
     protected double salary;
 

@@ -1,4 +1,4 @@
-package Person;
+package model.Person;
 
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.GenericGenerator;
@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-@Entity(name = "Person.Address")
+@Entity(name = "model.Person.Address")
 public class Address {
     @Id
     @GeneratedValue(generator = "increment")

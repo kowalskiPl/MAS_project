@@ -1,4 +1,4 @@
-package Parts;
+package model.Parts;
 
 import org.hibernate.annotations.GenericGenerator;
 

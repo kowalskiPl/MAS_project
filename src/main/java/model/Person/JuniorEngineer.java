@@ -1,8 +1,8 @@
-package Person;
+package model.Person;
 
 import javax.persistence.Entity;
 
-@Entity(name = "Person.JuniorEngineer")
+@Entity(name = "model.Person.JuniorEngineer")
 public class JuniorEngineer extends Employee {
     public static int experienceForSeniority = 4;
 

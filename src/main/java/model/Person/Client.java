@@ -1,15 +1,15 @@
-package Person;
+package model.Person;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
-@Entity(name = "Person.Client")
+@Entity(name = "model.Person.Client")
 public class Client extends Person {
 
     private String phoneNumber;
 
-    @OneToOne(mappedBy="Person.Client", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy="model.Person.Client", cascade = CascadeType.ALL)
     private Address address;
 
     public Client() {
