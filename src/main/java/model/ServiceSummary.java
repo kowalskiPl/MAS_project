@@ -21,6 +21,9 @@ public class ServiceSummary {
 
     private boolean approved = false;
 
+    @ManyToOne
+    private Vehicle vehicle;
+
     public ServiceSummary() {
     }
 
@@ -75,5 +78,13 @@ public class ServiceSummary {
 
     public void setApproved(boolean approved) {
         this.approved = approved;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }

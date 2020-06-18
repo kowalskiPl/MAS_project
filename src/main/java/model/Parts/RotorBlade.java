@@ -1,18 +1,34 @@
 package model.Parts;
 
+import model.Helicopter;
+
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
-@Entity()
+@Entity(name = "rotorBlade")
 public class RotorBlade extends Part {
+
     private int maximumRotationSpeed;
 
-    public RotorBlade() {
+    @ManyToOne
+    private Helicopter helicopter;
+
+    private RotorBlade() {
     }
 
-    public RotorBlade(String serialNumber, String manufacturer, int usageTime, Date creationDate, int maximumRotationSpeed) {
+    private RotorBlade(String serialNumber, String manufacturer, int usageTime, Date creationDate, int maximumRotationSpeed) {
         super(serialNumber, manufacturer, usageTime, creationDate);
         this.maximumRotationSpeed = maximumRotationSpeed;
+    }
+
+    public static void addHelicopter(Helicopter helicopter, String serialNumber, String manufacturer, int usageTime, Date creationDate, int maximumRotationSpeed) {
+        if (helicopter == null) {
+            throw new IllegalArgumentException("Given helicopter does not exist");
+        } else {
+            RotorBlade blade = new RotorBlade(serialNumber, manufacturer, usageTime, creationDate, maximumRotationSpeed);
+            helicopter.addRotorBlade(blade);
+        }
     }
 
     public int getMaximumRotationSpeed() {
@@ -21,5 +37,13 @@ public class RotorBlade extends Part {
 
     public void setMaximumRotationSpeed(int maximumRotationSpeed) {
         this.maximumRotationSpeed = maximumRotationSpeed;
+    }
+
+    public Helicopter getHelicopter() {
+        return helicopter;
+    }
+
+    public void setHelicopter(Helicopter helicopter) {
+        this.helicopter = helicopter;
     }
 }
