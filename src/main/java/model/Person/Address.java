@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-@Entity(name = "model.Person.Address")
+@Entity(name = "address")
 public class Address {
     @Id
     @GeneratedValue(generator = "increment")

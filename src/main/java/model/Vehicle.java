@@ -1,5 +1,7 @@
 package model;
 
+import model.Parts.Engine;
+import model.Person.Client;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -39,6 +41,12 @@ public class Vehicle {
     @ManyToOne
     protected Manufacturer manufacturer = null;
 
+    @ManyToOne
+    protected Client client = null;
+
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
+    protected List<Engine> engines = new ArrayList<>();
+
     public Vehicle() {
     }
 
@@ -54,11 +62,54 @@ public class Vehicle {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public void addManufacturer(Manufacturer manufacturer){
-        if (this.manufacturer == null){
+    public void addManufacturer(Manufacturer manufacturer) {
+        if (this.manufacturer == null) {
             this.manufacturer = manufacturer;
             manufacturer.addVehicle(this);
         }
+    }
+
+    public void addClient(Client client) {
+        if (this.client == null) {
+            this.client = client;
+            client.addVehicle(this);
+        }
+    }
+
+    public void addEngine(Engine engine) {
+        engines.add(engine);
+    }
+
+    public List<ServiceSummary> getServiceSummaries() {
+        return serviceSummaries;
+    }
+
+    public void setServiceSummaries(List<ServiceSummary> serviceSummaries) {
+        this.serviceSummaries = serviceSummaries;
+    }
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public List<Engine> getEngines() {
+        return engines;
+    }
+
+    public void setEngines(List<Engine> engines) {
+        this.engines = engines;
     }
 
     public long getId() {
@@ -131,5 +182,24 @@ public class Vehicle {
 
     public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "id=" + id +
+                ", registrationNumber='" + registrationNumber + '\'' +
+                ", assemblyDate=" + assemblyDate +
+                ", maximumSpeed=" + maximumSpeed +
+                ", minimumSpeed=" + minimumSpeed +
+                ", emptyWeight=" + emptyWeight +
+                ", maximumWeight=" + maximumWeight +
+                ", maximumG=" + maximumG +
+                ", numberOfSeats=" + numberOfSeats +
+                ", serviceSummaries=" + serviceSummaries +
+                ", manufacturer=" + manufacturer +
+                ", client=" + client +
+                ", engines=" + engines +
+                '}';
     }
 }

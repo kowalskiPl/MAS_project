@@ -22,12 +22,14 @@ public class RotorBlade extends Part {
         this.maximumRotationSpeed = maximumRotationSpeed;
     }
 
-    public static void addHelicopter(Helicopter helicopter, String serialNumber, String manufacturer, int usageTime, Date creationDate, int maximumRotationSpeed) {
+    public static RotorBlade getRotorBlade(Helicopter helicopter, String serialNumber, String manufacturer, int usageTime, Date creationDate, int maximumRotationSpeed) {
         if (helicopter == null) {
             throw new IllegalArgumentException("Given helicopter does not exist");
         } else {
             RotorBlade blade = new RotorBlade(serialNumber, manufacturer, usageTime, creationDate, maximumRotationSpeed);
+            blade.setHelicopter(helicopter);
             helicopter.addRotorBlade(blade);
+            return blade;
         }
     }
 
