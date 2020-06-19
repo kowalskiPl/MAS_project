@@ -1,5 +1,7 @@
 package model.Parts;
 
+import model.Vehicle;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -23,6 +25,9 @@ public class NavigationSystem extends Part {
     @Temporal(TemporalType.DATE)
     private Date lastCalibration;
 
+    @OneToOne
+    private Vehicle vehicle;
+
     public NavigationSystem() {
     }
 
@@ -35,6 +40,13 @@ public class NavigationSystem extends Part {
         this.heightMeasurementPrecision = heightMeasurementPrecision;
         this.horizontalLocationMeasurementPrecision = horizontalLocationMeasurementPrecision;
         this.lastCalibration = lastCalibration;
+    }
+
+    public void addVehicle(Vehicle vehicle){
+        if (this.vehicle == null){
+            this.vehicle = vehicle;
+            vehicle.addNavigationSystem(this);
+        }
     }
 
     public Date getLastSoftwareUpdate() {

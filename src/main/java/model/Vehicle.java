@@ -1,6 +1,7 @@
 package model;
 
 import model.Parts.Engine;
+import model.Parts.NavigationSystem;
 import model.Person.Client;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -47,6 +48,9 @@ public class Vehicle {
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
     protected List<Engine> engines = new ArrayList<>();
 
+    @OneToOne()
+    protected NavigationSystem navigationSystem;
+
     public Vehicle() {
     }
 
@@ -78,6 +82,13 @@ public class Vehicle {
 
     public void addEngine(Engine engine) {
         engines.add(engine);
+    }
+
+    public void addNavigationSystem(NavigationSystem navigationSystem) {
+        if (this.navigationSystem == null) {
+            this.navigationSystem = navigationSystem;
+            navigationSystem.addVehicle(this);
+        }
     }
 
     public List<ServiceSummary> getServiceSummaries() {
