@@ -1,13 +1,14 @@
 package model.Person;
 
 import model.Vehicle;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Entity(name = "client")
 public class Client extends Person {
@@ -18,7 +19,8 @@ public class Client extends Person {
     private Address address;
 
     @OneToMany(mappedBy = "client", orphanRemoval = true, cascade = CascadeType.ALL)
-    private List<Vehicle> vehicles = new ArrayList<>();
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Set<Vehicle> vehicles = new TreeSet<>();
 
     public Client() {
     }
@@ -42,6 +44,14 @@ public class Client extends Person {
             vehicles.add(vehicle);
             vehicle.addClient(this);
         }
+    }
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
     public String getPhoneNumber() {

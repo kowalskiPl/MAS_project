@@ -1,19 +1,20 @@
 package model;
 
 import model.Parts.RotorBlade;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity(name = "helicopter")
 public class Helicopter extends Vehicle {
 
     @OneToMany(mappedBy = "helicopter", orphanRemoval = true, cascade = CascadeType.ALL)
-    private List<RotorBlade> rotorBlades = new ArrayList<>();
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Set<RotorBlade> rotorBlades = new TreeSet<>();
 
     public Helicopter() {
     }
@@ -29,11 +30,11 @@ public class Helicopter extends Vehicle {
         }
     }
 
-    public List<RotorBlade> getRotorBlades() {
+    public Set<RotorBlade> getRotorBlades() {
         return rotorBlades;
     }
 
-    public void setRotorBlades(List<RotorBlade> rotorBlades) {
+    public void setRotorBlades(Set<RotorBlade> rotorBlades) {
         this.rotorBlades = rotorBlades;
     }
 }

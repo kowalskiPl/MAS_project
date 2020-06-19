@@ -22,7 +22,7 @@ public class ServiceSummary {
     private boolean approved = false;
 
     @ManyToOne
-    private Vehicle vehicle;
+    private Vehicle vehicle = null;
 
     public ServiceSummary() {
     }
@@ -38,6 +38,13 @@ public class ServiceSummary {
         this.title = title;
         this.description = description;
         this.approved = approved;
+    }
+
+    public void addVehicle(Vehicle vehicle){
+        if (this.vehicle == null){
+            vehicle.addServiceSummary(this);
+            this.vehicle = vehicle;
+        }
     }
 
     public long getId() {

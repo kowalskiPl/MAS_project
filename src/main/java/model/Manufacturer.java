@@ -1,10 +1,14 @@
 package model;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Entity(name = "manufacturer")
 public class Manufacturer {
@@ -18,7 +22,8 @@ public class Manufacturer {
     private String contactNumber;
 
     @OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Vehicle> vehicles = new ArrayList<>();
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Set<Vehicle> vehicles = new TreeSet<>();
 
     public Manufacturer() {
     }
@@ -59,11 +64,11 @@ public class Manufacturer {
         this.contactNumber = contactNumber;
     }
 
-    public List<Vehicle> getVehicles() {
+    public Set<Vehicle> getVehicles() {
         return vehicles;
     }
 
-    public void setVehicles(List<Vehicle> vehicles) {
+    public void setVehicles(Set<Vehicle> vehicles) {
         this.vehicles = vehicles;
     }
 }

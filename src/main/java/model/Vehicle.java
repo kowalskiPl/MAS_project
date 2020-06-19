@@ -4,11 +4,11 @@ import model.Parts.Engine;
 import model.Parts.NavigationSystem;
 import model.Person.Client;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @Entity(name = "vehicle")
@@ -37,7 +37,8 @@ public class Vehicle {
     protected int numberOfSeats;
 
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
-    protected List<ServiceSummary> serviceSummaries = new ArrayList<>();
+    @LazyCollection(LazyCollectionOption.FALSE)
+    protected Set<ServiceSummary> serviceSummaries = new TreeSet<>();
 
     @ManyToOne
     protected Manufacturer manufacturer = null;
@@ -46,7 +47,8 @@ public class Vehicle {
     protected Client client = null;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    protected List<Engine> engines = new ArrayList<>();
+    @LazyCollection(LazyCollectionOption.FALSE)
+    protected Set<Engine> engines = new TreeSet<>();
 
     @OneToOne()
     protected NavigationSystem navigationSystem;
@@ -64,6 +66,13 @@ public class Vehicle {
         this.maximumWeight = maximumWeight;
         this.maximumG = maximumG;
         this.numberOfSeats = numberOfSeats;
+    }
+
+    public void addServiceSummary(ServiceSummary summary){
+        if (!serviceSummaries.contains(summary)){
+            summary.addVehicle(this);
+            serviceSummaries.add(summary);
+        }
     }
 
     public void addManufacturer(Manufacturer manufacturer) {
@@ -91,11 +100,11 @@ public class Vehicle {
         }
     }
 
-    public List<ServiceSummary> getServiceSummaries() {
+    public Set<ServiceSummary> getServiceSummaries() {
         return serviceSummaries;
     }
 
-    public void setServiceSummaries(List<ServiceSummary> serviceSummaries) {
+    public void setServiceSummaries(Set<ServiceSummary> serviceSummaries) {
         this.serviceSummaries = serviceSummaries;
     }
 
@@ -115,11 +124,11 @@ public class Vehicle {
         this.client = client;
     }
 
-    public List<Engine> getEngines() {
+    public Set<Engine> getEngines() {
         return engines;
     }
 
-    public void setEngines(List<Engine> engines) {
+    public void setEngines(Set<Engine> engines) {
         this.engines = engines;
     }
 
@@ -209,7 +218,6 @@ public class Vehicle {
                 ", numberOfSeats=" + numberOfSeats +
                 ", serviceSummaries=" + serviceSummaries +
                 ", manufacturer=" + manufacturer +
-                ", client=" + client +
                 ", engines=" + engines +
                 '}';
     }
