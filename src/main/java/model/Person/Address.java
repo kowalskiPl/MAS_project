@@ -3,10 +3,7 @@ package model.Person;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity(name = "address")
 public class Address {
@@ -14,14 +11,15 @@ public class Address {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
-    @NotNull
+    @Column(nullable = false)
     private String street;
-    @NotNull
+    @Column(nullable = false)
     private String city;
-    @NotNull
+    @Column(nullable = false)
     private String postalCode;
+
     @OneToOne
-    private Client client;
+    private Client client = null;
 
     public Address() {
     }
@@ -30,6 +28,13 @@ public class Address {
         this.street = street;
         this.city = city;
         this.postalCode = postalCode;
+    }
+
+    public void addClient(Client client){
+        if (this.client == null){
+            this.client = client;
+            client.addAddress(this);
+        }
     }
 
     public String getStreet() {
@@ -54,5 +59,15 @@ public class Address {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                '}';
     }
 }

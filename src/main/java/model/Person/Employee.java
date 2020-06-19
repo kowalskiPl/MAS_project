@@ -1,8 +1,11 @@
 package model.Person;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
-@Entity(name = "model.Person.Employee")
+@Entity(name = "employee")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Employee extends Person {
     protected double salary;
 

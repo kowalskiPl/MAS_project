@@ -4,11 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
-@Entity(name = "model.Person.SeniorEngineer")
+@Entity(name = "seniorEngineer")
 public class SeniorEngineer extends Employee {
 
     public enum Specialization {
         airplanes, helicopters
+    }
+
+    public SeniorEngineer() {
     }
 
     @Enumerated(EnumType.STRING)

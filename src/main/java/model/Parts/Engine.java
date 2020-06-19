@@ -5,6 +5,7 @@ import model.Vehicle;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Entity(name = "Engine")
@@ -17,6 +18,7 @@ public class Engine extends Part {
 
     protected int maximumRotationSpeed;
 
+    @ManyToOne
     protected Vehicle vehicle = null;
 
     protected Engine() {

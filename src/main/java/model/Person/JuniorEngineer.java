@@ -2,7 +2,7 @@ package model.Person;
 
 import javax.persistence.Entity;
 
-@Entity(name = "model.Person.JuniorEngineer")
+@Entity(name = "juniorEngineer")
 public class JuniorEngineer extends Employee {
     public static int experienceForSeniority = 4;
 

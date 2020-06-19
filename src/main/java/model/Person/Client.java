@@ -14,7 +14,7 @@ public class Client extends Person {
 
     private String phoneNumber;
 
-    @OneToOne(mappedBy="model.Person.Client", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy="client", cascade = CascadeType.ALL)
     private Address address;
 
     @OneToMany(mappedBy = "client", orphanRemoval = true, cascade = CascadeType.ALL)
@@ -27,6 +27,14 @@ public class Client extends Person {
         super(firstName, secondName);
         this.phoneNumber = phoneNumber;
         this.address = address;
+        address.addClient(this);
+    }
+
+    public void addAddress(Address address){
+        if (this.address == null){
+            this.address = address;
+            address.addClient(this);
+        }
     }
 
     public void addVehicle(Vehicle vehicle){
@@ -50,5 +58,17 @@ public class Client extends Person {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "phoneNumber='" + phoneNumber + '\'' +
+                ", address=" + address +
+                ", vehicles=" + vehicles +
+                ", id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

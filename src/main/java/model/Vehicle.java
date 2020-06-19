@@ -45,7 +45,7 @@ public class Vehicle {
     @ManyToOne
     protected Client client = null;
 
-    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     protected List<Engine> engines = new ArrayList<>();
 
     @OneToOne()
