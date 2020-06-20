@@ -1,0 +1,5 @@
+0 Sat Jun 20 12:38:18 CEST 2020 main INFO: Logger service started[0m
+1 Sat Jun 20 12:38:19 CEST 2020 JavaFX Application Thread INFO: Loaded view[0m
+2 Sat Jun 20 12:38:19 CEST 2020 JavaFX Application Thread INFO: Scene shown[0m
+3 Sat Jun 20 12:38:22 CEST 2020 JavaFX Application Thread INFO: Window closing[0m
+4 Sat Jun 20 12:38:22 CEST 2020 JavaFX Application Thread INFO: Logger service shutting down[0m

@@ -1,0 +1,9 @@
+0 Sat Jun 20 11:57:36 CEST 2020 Test worker INFO: Logger service started[0m
+1 Sat Jun 20 11:57:38 CEST 2020 Test worker INFO: Attempting to add new client[0m
+2 Sat Jun 20 11:57:38 CEST 2020 Test worker INFO: New client added[0m
+3 Sat Jun 20 11:57:38 CEST 2020 Test worker INFO: Attempting to add new vehicle for client[0m
+4 Sat Jun 20 11:57:38 CEST 2020 Test worker INFO: Added new vehicle[0m
+5 Sat Jun 20 11:57:38 CEST 2020 Test worker INFO: Attempting to add new vehicle for client[0m
+6 Sat Jun 20 11:57:38 CEST 2020 Test worker INFO: Added new vehicle[0m
+7 Sat Jun 20 11:57:38 CEST 2020 Test worker INFO: Fetching client info[0m
+8 Sat Jun 20 11:57:38 CEST 2020 Test worker INFO: Logger service shutting down[0m

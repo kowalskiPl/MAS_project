@@ -1,2 +1,4 @@
 # Project exclude paths
 /.gradle/
+/log.txt/
+/testLog.txt/

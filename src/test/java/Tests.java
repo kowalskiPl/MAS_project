@@ -1,5 +1,7 @@
 import db_util.HibernateDBUtil;
 import db_util.HibernateUtil;
+import logging.LogPolicy;
+import logging.Logger;
 import model.Airplane;
 import model.Helicopter;
 import model.Parts.GasTurbineEngine;
@@ -10,10 +12,22 @@ import org.junit.Test;
 
 import java.util.Date;
 
+/**
+ * A meme class containing meme tests that have nothing in common with junit test
+ */
 public class Tests {
+
+    private void setupLogger(){
+        Logger.getInstance().initialize(new LogPolicy(), "testLog.txt");
+    }
+
+    private void shutdownLogger(){
+        Logger.getInstance().deinitialize();
+    }
 
     @Test
     public void engineTest(){
+        setupLogger();
         Airplane airplane = new Airplane();
         GasTurbineEngine engine = GasTurbineEngine.getEngine(airplane,"XS4533SDG", "GE", 0, new Date(),
                 1500, 1200, 8240, 230);
@@ -21,10 +35,12 @@ public class Tests {
                 1500, 1200, 8240, 230);
 
         System.out.println(airplane);
+        shutdownLogger();
     }
 
     @Test
     public void hibernateBasicTest(){
+        setupLogger();
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         Address address = new Address("Szlifierska 21/31", "Warsaw", "01-461");
@@ -33,10 +49,12 @@ public class Tests {
         session.save(client);
         session.getTransaction().commit();
         session.close();
+        shutdownLogger();
     }
 
     @Test
     public void multipleVehicleAddTest(){
+        setupLogger();
         Address address = new Address("Szlifierska 21/31", "Warsaw", "01-461");
         Client client = new Client("John", "Doe", "608810369", address);
         HibernateDBUtil.saveNewClient(client, address);
@@ -45,5 +63,6 @@ public class Tests {
         HibernateDBUtil.addVehicleToClient(1, airplane);
         HibernateDBUtil.addVehicleToClient(1, helicopter);
         System.out.println(HibernateDBUtil.getClient(1));
+        shutdownLogger();
     }
 }
