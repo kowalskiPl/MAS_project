@@ -1,5 +1,19 @@
-0 Sat Jun 20 12:38:18 CEST 2020 main INFO: Logger service started[0m
-1 Sat Jun 20 12:38:19 CEST 2020 JavaFX Application Thread INFO: Loaded view[0m
-2 Sat Jun 20 12:38:19 CEST 2020 JavaFX Application Thread INFO: Scene shown[0m
-3 Sat Jun 20 12:38:22 CEST 2020 JavaFX Application Thread INFO: Window closing[0m
-4 Sat Jun 20 12:38:22 CEST 2020 JavaFX Application Thread INFO: Logger service shutting down[0m
+0 Sat Jun 20 17:47:50 CEST 2020 main INFO: Logger service started[0m
+1 Sat Jun 20 17:47:52 CEST 2020 JavaFX Application Thread INFO: Attempting to add new client[0m
+2 Sat Jun 20 17:47:52 CEST 2020 JavaFX Application Thread INFO: New client added[0m
+3 Sat Jun 20 17:47:52 CEST 2020 JavaFX Application Thread INFO: Attempting to add new vehicle for client[0m
+4 Sat Jun 20 17:47:52 CEST 2020 JavaFX Application Thread INFO: Added new vehicle[0m
+5 Sat Jun 20 17:47:52 CEST 2020 JavaFX Application Thread INFO: Attempting to add new vehicle for client[0m
+6 Sat Jun 20 17:47:52 CEST 2020 JavaFX Application Thread INFO: Added new vehicle[0m
+7 Sat Jun 20 17:47:52 CEST 2020 JavaFX Application Thread INFO: Attempting to save new service summary[0m
+8 Sat Jun 20 17:47:52 CEST 2020 JavaFX Application Thread INFO: Added new service summary[0m
+9 Sat Jun 20 17:47:52 CEST 2020 JavaFX Application Thread INFO: Attempting to save new service summary[0m
+10 Sat Jun 20 17:47:52 CEST 2020 JavaFX Application Thread INFO: Added new service summary[0m
+11 Sat Jun 20 17:47:52 CEST 2020 JavaFX Application Thread INFO: Loaded view[0m
+12 Sat Jun 20 17:47:53 CEST 2020 JavaFX Application Thread INFO: Scene shown[0m
+13 Sat Jun 20 17:47:56 CEST 2020 JavaFX Application Thread INFO: Fetching service summaries for vehicle: EF-ABC[0m
+14 Sat Jun 20 17:47:56 CEST 2020 JavaFX Application Thread DEBUG: [36m[ServiceSummary{id=1, date=2020-06-20, title='test', description='Test description', approved=false}, ServiceSummary{id=2, date=2019-10-21, title='test_2', description='Test_2 description', approved=false}][0m
+15 Sat Jun 20 17:47:58 CEST 2020 JavaFX Application Thread INFO: Fetching service summaries for vehicle: [0m
+16 Sat Jun 20 17:47:58 CEST 2020 JavaFX Application Thread DEBUG: [36m[][0m
+17 Sat Jun 20 17:47:59 CEST 2020 JavaFX Application Thread INFO: Window closing[0m
+18 Sat Jun 20 17:47:59 CEST 2020 JavaFX Application Thread INFO: Logger service shutting down[0m

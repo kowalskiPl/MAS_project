@@ -1,20 +1,26 @@
 package windows;
 
 public class ModelTable {
-    private String id, date, title, approved;
+    private long id;
+    private String date;
+    private String title;
+    private String approved;
 
-    public ModelTable(String id, String date, String title, String approved) {
+    public ModelTable(long id, String date, String title, boolean approved) {
         this.id = id;
         this.date = date;
         this.title = title;
-        this.approved = approved;
+        if (approved)
+            this.approved = "yes";
+        else
+            this.approved = "no";
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

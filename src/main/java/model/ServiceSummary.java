@@ -42,10 +42,11 @@ public class ServiceSummary {
 
     public void addVehicle(Vehicle vehicle){
         if (this.vehicle == null){
-            vehicle.addServiceSummary(this);
             this.vehicle = vehicle;
+            vehicle.addServiceSummary(this);
         }
     }
+
 
     public long getId() {
         return id;
@@ -93,5 +94,16 @@ public class ServiceSummary {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceSummary{" +
+                "id=" + id +
+                ", date=" + date +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", approved=" + approved +
+                '}';
     }
 }
