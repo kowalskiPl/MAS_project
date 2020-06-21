@@ -19,12 +19,12 @@
           <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#onEditButtonPressed" prefHeight="25.0" prefWidth="80.0" text="Edit" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#onEditButtonPressed" prefHeight="25.0" prefWidth="80.0" text="Edit" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Cancel" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#onCancelButtonPressed" prefHeight="25.0" prefWidth="80.0" text="Cancel" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
@@ -53,7 +53,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#onSearchButtonPressed" text="Search" GridPane.columnIndex="2">
+            <Button mnemonicParsing="false" onAction="#onSearchButtonPressed" prefHeight="25.0" prefWidth="80.0" text="Search" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>

@@ -1,6 +1,7 @@
 package windows;
 
 import db_util.HibernateDBUtil;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -33,6 +34,7 @@ public class EditSummaryController implements Initializable{
 
 
     public void onEditButtonPressed(ActionEvent event){
+        table.getSelectionModel().selectedIndexProperty();
         Logger.getInstance().print("Edit button pressed", SeverityType.DEBUG);
     }
 
@@ -42,13 +44,14 @@ public class EditSummaryController implements Initializable{
         Logger.getInstance().print(things.toString(), SeverityType.DEBUG);
         for (ServiceSummary thing: things) {
             observableList.add(new ModelTable(thing.getId(), thing.getDate().toString(), thing.getTitle(), thing.isApproved()));
+            EditServiceSummary.getSummaries().add(thing);
         }
         table.setItems(observableList);
         table.refresh();
     }
 
     public void onCancelButtonPressed(ActionEvent event){
-
+        Platform.exit();
     }
 
 

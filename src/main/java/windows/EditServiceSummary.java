@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import logging.LogPolicy;
 import logging.Logger;
@@ -16,9 +17,17 @@ import model.Person.Client;
 import model.ServiceSummary;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class EditServiceSummary extends Application {
+    private static AnchorPane root = new AnchorPane();
+    private static List<AnchorPane> views = new ArrayList<>();
+    private static List<ServiceSummary> summaries = new ArrayList<>();
+    private static int currentView = 0;
+    private static int currentSummary = 0;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Address address = new Address("Szlifierska 21/31", "Warsaw", "01-461");
@@ -35,14 +44,30 @@ public class EditServiceSummary extends Application {
         ServiceSummary summary = new ServiceSummary(new SimpleDateFormat("dd-MM-yyyy")
                 .parse("21-10-2019"), "test_2", "Test_2 description");
         HibernateDBUtil.saveVehicleServiceSummary(1, summary);
-        Parent root = FXMLLoader.load(getClass().getResource("/edit_service_summary.fxml"));
-        Logger.getInstance().print("Loaded view", SeverityType.INFO);
+
+
+        views.add(FXMLLoader.load(getClass().getResource("/edit_service_summary.fxml")));
+        views.add(FXMLLoader.load(getClass().getResource("/edit_service_second.fxml")));
+
+        setView(0);
         primaryStage.setTitle("Hewwo owo");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
         Logger.getInstance().print("Scene shown", SeverityType.INFO);
+    }
 
+    public static List<ServiceSummary> getSummaries() {
+        return summaries;
+    }
 
+    public static void setSummaries(List<ServiceSummary> summaries) {
+        EditServiceSummary.summaries = summaries;
+    }
+
+    private void setView(int id) {
+        root.getChildren().remove(views.get(currentView));
+        root.getChildren().add(views.get(id));
+        currentView = id;
     }
 
     public static void main(String[] args) {
