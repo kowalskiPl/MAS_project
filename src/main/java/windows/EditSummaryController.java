@@ -22,27 +22,37 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class EditSummaryController implements Initializable{
+public class EditSummaryController implements Initializable {
 
     @FXML
     private TableView<ModelTable> table;
 
     private ObservableList<ModelTable> observableList = FXCollections.observableArrayList();
 
+    private EditSummarySecondController secondController;
+
     @FXML
     private TextField regNumSearchField;
 
-
-    public void onEditButtonPressed(ActionEvent event){
-        table.getSelectionModel().selectedIndexProperty();
-        Logger.getInstance().print("Edit button pressed", SeverityType.DEBUG);
+    public void onEditButtonPressed(ActionEvent event) {
+        if (table.getSelectionModel().selectedIndexProperty().get() >= 0){
+            Logger.getInstance().print("Edit button pressed", SeverityType.DEBUG);
+            ServiceSummary summary = EditServiceSummary.getSummaries().get(table.getSelectionModel().selectedIndexProperty().get());
+            EditServiceSummary.setView(1);
+            secondController.setApproved(summary.isApproved()? "YES" : "NO");
+            secondController.setDate(summary.getDate().toString());
+            secondController.setDescription(summary.getDescription());
+            secondController.setTitle(summary.getTitle());
+            secondController.setRegNum(regNumSearchField.getText());
+            secondController.setSummary(summary);
+        }
     }
 
-    public void onSearchButtonPressed(ActionEvent event){
+    public void onSearchButtonPressed(ActionEvent event) {
         observableList.clear();
         List<ServiceSummary> things = HibernateDBUtil.searchServiceSummaries(regNumSearchField.getText());
-        Logger.getInstance().print(things.toString(), SeverityType.DEBUG);
-        for (ServiceSummary thing: things) {
+        Logger.getInstance().print("Search result for: " + regNumSearchField.getText() + " " + things.toString(), SeverityType.DEBUG);
+        for (ServiceSummary thing : things) {
             observableList.add(new ModelTable(thing.getId(), thing.getDate().toString(), thing.getTitle(), thing.isApproved()));
             EditServiceSummary.getSummaries().add(thing);
         }
@@ -50,7 +60,7 @@ public class EditSummaryController implements Initializable{
         table.refresh();
     }
 
-    public void onCancelButtonPressed(ActionEvent event){
+    public void onCancelButtonPressed(ActionEvent event) {
         Platform.exit();
     }
 
@@ -73,5 +83,15 @@ public class EditSummaryController implements Initializable{
         table.getColumns().add(colDate);
         table.getColumns().add(colTitle);
         table.getColumns().add(colApproved);
+        Logger.getInstance().print("Primary view initialized", SeverityType.DEBUG);
     }
+
+    public EditSummarySecondController getSecondController() {
+        return secondController;
+    }
+
+    public void setSecondController(EditSummarySecondController secondController) {
+        this.secondController = secondController;
+    }
+
 }

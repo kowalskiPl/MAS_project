@@ -52,20 +52,20 @@ public class HibernateDBUtil {
         }
     }
 
-    public static void updateServiceSummary(long summaryId, String title, String description, boolean approved) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Logger.getInstance().print("Attempting update service summary id: " + summaryId, SeverityType.INFO);
-            session.beginTransaction();
-            ServiceSummary summary = session.createQuery("from serviceSummary ss where ss.id =: id", ServiceSummary.class)
-                    .setParameter("id", summaryId).list().get(0);
-            summary.setTitle(title);
-            summary.setDescription(description);
-            summary.setApproved(approved);
-            session.update(summary);
-            session.getTransaction().commit();
-            Logger.getInstance().print("Updated service summary id: " + summaryId , SeverityType.INFO);
-        }
-    }
+//    public static void updateServiceSummary(long summaryId, String title, String description, boolean approved) {
+//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            Logger.getInstance().print("Attempting update service summary id: " + summaryId, SeverityType.INFO);
+//            session.beginTransaction();
+//            ServiceSummary summary = session.createQuery("from serviceSummary ss where ss.id =: id", ServiceSummary.class)
+//                    .setParameter("id", summaryId).list().get(0);
+//            summary.setTitle(title);
+//            summary.setDescription(description);
+//            summary.setApproved(approved);
+//            session.update(summary);
+//            session.getTransaction().commit();
+//            Logger.getInstance().print("Updated service summary id: " + summaryId , SeverityType.INFO);
+//        }
+//    }
 
     public static void saveSeniorEngineer(SeniorEngineer engineer) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -96,6 +96,16 @@ public class HibernateDBUtil {
             Logger.getInstance().print("Fetching service summaries for vehicle: " + registrationNumber, SeverityType.INFO);
             return session.createQuery("from serviceSummary ss where ss.vehicle.registrationNumber =: regNum", ServiceSummary.class)
                     .setParameter("regNum", registrationNumber).list();
+        }
+    }
+
+    public static void updateServiceSummary(ServiceSummary summary){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Logger.getInstance().print("Attempting to update service summary id: "+ summary.getId(), SeverityType.INFO);
+            session.beginTransaction();
+            session.update(summary);
+            session.getTransaction().commit();
+            Logger.getInstance().print("Updated summary id: " + summary.getId(), SeverityType.INFO);
         }
     }
 }

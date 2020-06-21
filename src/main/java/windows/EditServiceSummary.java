@@ -46,14 +46,21 @@ public class EditServiceSummary extends Application {
         HibernateDBUtil.saveVehicleServiceSummary(1, summary);
 
 
-        views.add(FXMLLoader.load(getClass().getResource("/edit_service_summary.fxml")));
-        views.add(FXMLLoader.load(getClass().getResource("/edit_service_second.fxml")));
+
+        FXMLLoader lod = new FXMLLoader();
+        views.add(lod.load(getClass().getResource("/edit_service_summary.fxml").openStream()));
+        EditSummaryController con = lod.getController();
+
+        FXMLLoader loader = new FXMLLoader();
+        views.add(loader.load(getClass().getResource("/edit_service_second.fxml").openStream()));
+        EditSummarySecondController c = loader.getController();
+        con.setSecondController(c);
+        c.setController(con);
 
         setView(0);
         primaryStage.setTitle("Hewwo owo");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
-        Logger.getInstance().print("Scene shown", SeverityType.INFO);
     }
 
     public static List<ServiceSummary> getSummaries() {
@@ -64,10 +71,11 @@ public class EditServiceSummary extends Application {
         EditServiceSummary.summaries = summaries;
     }
 
-    private void setView(int id) {
+    public static void setView(int id) {
         root.getChildren().remove(views.get(currentView));
         root.getChildren().add(views.get(id));
         currentView = id;
+        Logger.getInstance().print("Showing scene id: "+ id, SeverityType.INFO);
     }
 
     public static void main(String[] args) {
