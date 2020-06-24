@@ -12,7 +12,7 @@ import java.util.*;
 
 @Entity(name = "vehicle")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Vehicle {
+public abstract class Vehicle {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")

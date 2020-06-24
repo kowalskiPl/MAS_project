@@ -9,7 +9,7 @@ import java.util.Date;
 public class GasTurbineEngine extends Engine {
     private int idleTemperature;
 
-    private GasTurbineEngine() {
+    public GasTurbineEngine() {
     }
 
     private GasTurbineEngine(Engine engine, int idleTemperature){

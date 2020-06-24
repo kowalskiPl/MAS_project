@@ -22,6 +22,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Javafx controller for edit_service_summary.fxml
+ */
 public class EditSummaryController implements Initializable {
 
     @FXML
@@ -34,7 +37,10 @@ public class EditSummaryController implements Initializable {
     @FXML
     private TextField regNumSearchField;
 
-    public void onEditButtonPressed(ActionEvent event) {
+    /**
+     * Shows summary edit view
+     */
+    public void onEditButtonPressed() {
         if (table.getSelectionModel().selectedIndexProperty().get() >= 0){
             Logger.getInstance().print("Edit button pressed", SeverityType.DEBUG);
             ServiceSummary summary = EditServiceSummary.getSummaries().get(table.getSelectionModel().selectedIndexProperty().get());
@@ -48,7 +54,10 @@ public class EditSummaryController implements Initializable {
         }
     }
 
-    public void onSearchButtonPressed(ActionEvent event) {
+    /**
+     * Searches for summaries for given registration number
+     */
+    public void onSearchButtonPressed() {
         observableList.clear();
         List<ServiceSummary> things = HibernateDBUtil.searchServiceSummaries(regNumSearchField.getText());
         Logger.getInstance().print("Search result for: " + regNumSearchField.getText() + " " + things.toString(), SeverityType.DEBUG);
@@ -60,7 +69,7 @@ public class EditSummaryController implements Initializable {
         table.refresh();
     }
 
-    public void onCancelButtonPressed(ActionEvent event) {
+    public void onCancelButtonPressed() {
         Platform.exit();
     }
 

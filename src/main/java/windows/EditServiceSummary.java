@@ -26,7 +26,6 @@ public class EditServiceSummary extends Application {
     private static List<AnchorPane> views = new ArrayList<>();
     private static List<ServiceSummary> summaries = new ArrayList<>();
     private static int currentView = 0;
-    private static int currentSummary = 0;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -39,10 +38,10 @@ public class EditServiceSummary extends Application {
         HibernateDBUtil.addVehicleToClient(1, airplane);
         HibernateDBUtil.addVehicleToClient(1, helicopter);
 
-        ServiceSummary serviceSummary = new ServiceSummary(new Date(), "test", "Test description");
+        ServiceSummary serviceSummary = new ServiceSummary(new Date(), "Engine test", "Tested engine parameters, changed oil");
         HibernateDBUtil.saveVehicleServiceSummary(1, serviceSummary);
         ServiceSummary summary = new ServiceSummary(new SimpleDateFormat("dd-MM-yyyy")
-                .parse("21-10-2019"), "test_2", "Test_2 description");
+                .parse("21-10-2019"), "Changed elevator", "Elevator got replaced with a new one.");
         HibernateDBUtil.saveVehicleServiceSummary(1, summary);
 
 
@@ -58,8 +57,9 @@ public class EditServiceSummary extends Application {
         c.setController(con);
 
         setView(0);
-        primaryStage.setTitle("Hewwo owo");
+        primaryStage.setTitle("Edit service summary");
         primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

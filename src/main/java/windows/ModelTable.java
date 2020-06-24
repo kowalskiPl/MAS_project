@@ -11,9 +11,9 @@ public class ModelTable {
         this.date = date;
         this.title = title;
         if (approved)
-            this.approved = "yes";
+            this.approved = "YES";
         else
-            this.approved = "no";
+            this.approved = "NO";
     }
 
     public long getId() {
