@@ -1,33 +1,17 @@
-0 Wed Jun 24 15:19:28 CEST 2020 main INFO: Logger service started[0m
-1 Wed Jun 24 15:19:30 CEST 2020 JavaFX Application Thread INFO: Attempting to add new client[0m
-2 Wed Jun 24 15:19:30 CEST 2020 JavaFX Application Thread INFO: New client added[0m
-3 Wed Jun 24 15:19:30 CEST 2020 JavaFX Application Thread INFO: Attempting to add new vehicle for client[0m
-4 Wed Jun 24 15:19:30 CEST 2020 JavaFX Application Thread INFO: Added new vehicle[0m
-5 Wed Jun 24 15:19:30 CEST 2020 JavaFX Application Thread INFO: Attempting to add new vehicle for client[0m
-6 Wed Jun 24 15:19:30 CEST 2020 JavaFX Application Thread INFO: Added new vehicle[0m
-7 Wed Jun 24 15:19:30 CEST 2020 JavaFX Application Thread INFO: Attempting to save new service summary[0m
-8 Wed Jun 24 15:19:30 CEST 2020 JavaFX Application Thread INFO: Added new service summary[0m
-9 Wed Jun 24 15:19:30 CEST 2020 JavaFX Application Thread INFO: Attempting to save new service summary[0m
-10 Wed Jun 24 15:19:30 CEST 2020 JavaFX Application Thread INFO: Added new service summary[0m
-11 Wed Jun 24 15:19:30 CEST 2020 JavaFX Application Thread DEBUG: [36mPrimary view initialized[0m
-12 Wed Jun 24 15:19:30 CEST 2020 JavaFX Application Thread INFO: Showing scene id: 0[0m
-13 Wed Jun 24 15:19:35 CEST 2020 JavaFX Application Thread INFO: Fetching service summaries for vehicle: EF-ABC[0m
-14 Wed Jun 24 15:19:35 CEST 2020 JavaFX Application Thread DEBUG: [36mSearch result for: EF-ABC [ServiceSummary{id=1, date=2020-06-24, title='Engine test', description='Tested engine parameters, changed oil', approved=false}, ServiceSummary{id=2, date=2019-10-21, title='Changed elevator', description='Elevator got replaced with a new one.', approved=false}][0m
-15 Wed Jun 24 15:19:37 CEST 2020 JavaFX Application Thread DEBUG: [36mEdit button pressed[0m
-16 Wed Jun 24 15:19:37 CEST 2020 JavaFX Application Thread INFO: Showing scene id: 1[0m
-17 Wed Jun 24 15:19:55 CEST 2020 JavaFX Application Thread INFO: Attempting to update service summary id: 1[0m
-18 Wed Jun 24 15:19:55 CEST 2020 JavaFX Application Thread INFO: Updated summary id: 1[0m
-19 Wed Jun 24 15:20:02 CEST 2020 JavaFX Application Thread INFO: Attempting to update service summary id: 1[0m
-20 Wed Jun 24 15:20:02 CEST 2020 JavaFX Application Thread INFO: Updated summary id: 1[0m
-21 Wed Jun 24 15:20:04 CEST 2020 JavaFX Application Thread INFO: Showing scene id: 0[0m
-22 Wed Jun 24 15:20:04 CEST 2020 JavaFX Application Thread INFO: Fetching service summaries for vehicle: EF-ABC[0m
-23 Wed Jun 24 15:20:04 CEST 2020 JavaFX Application Thread DEBUG: [36mSearch result for: EF-ABC [ServiceSummary{id=1, date=2020-06-24, title='Engine test 1', description='Tested engine parameters, changed oil', approved=true}, ServiceSummary{id=2, date=2019-10-21, title='Changed elevator', description='Elevator got replaced with a new one.', approved=false}][0m
-24 Wed Jun 24 15:20:09 CEST 2020 JavaFX Application Thread DEBUG: [36mEdit button pressed[0m
-25 Wed Jun 24 15:20:09 CEST 2020 JavaFX Application Thread INFO: Showing scene id: 1[0m
-26 Wed Jun 24 15:20:10 CEST 2020 JavaFX Application Thread INFO: Attempting to update service summary id: 1[0m
-27 Wed Jun 24 15:20:10 CEST 2020 JavaFX Application Thread INFO: Updated summary id: 1[0m
-28 Wed Jun 24 15:20:12 CEST 2020 JavaFX Application Thread INFO: Showing scene id: 0[0m
-29 Wed Jun 24 15:20:12 CEST 2020 JavaFX Application Thread INFO: Fetching service summaries for vehicle: EF-ABC[0m
-30 Wed Jun 24 15:20:12 CEST 2020 JavaFX Application Thread DEBUG: [36mSearch result for: EF-ABC [ServiceSummary{id=1, date=2020-06-24, title='Engine test', description='Tested engine parameters, changed oil', approved=true}, ServiceSummary{id=2, date=2019-10-21, title='Changed elevator', description='Elevator got replaced with a new one.', approved=false}][0m
-31 Wed Jun 24 15:20:22 CEST 2020 JavaFX Application Thread INFO: Window closing[0m
-32 Wed Jun 24 15:20:22 CEST 2020 JavaFX Application Thread INFO: Logger service shutting down[0m
+0 Wed Jun 24 18:49:23 CEST 2020 main INFO: Logger service started[0m
+1 Wed Jun 24 18:49:25 CEST 2020 JavaFX Application Thread INFO: Attempting to add new client[0m
+2 Wed Jun 24 18:49:25 CEST 2020 JavaFX Application Thread INFO: New client added[0m
+3 Wed Jun 24 18:49:25 CEST 2020 JavaFX Application Thread INFO: Attempting to add new vehicle for client[0m
+4 Wed Jun 24 18:49:25 CEST 2020 JavaFX Application Thread INFO: Added new vehicle[0m
+5 Wed Jun 24 18:49:25 CEST 2020 JavaFX Application Thread INFO: Attempting to add new vehicle for client[0m
+6 Wed Jun 24 18:49:25 CEST 2020 JavaFX Application Thread INFO: Added new vehicle[0m
+7 Wed Jun 24 18:49:25 CEST 2020 JavaFX Application Thread INFO: Attempting to save new service summary[0m
+8 Wed Jun 24 18:49:25 CEST 2020 JavaFX Application Thread INFO: Added new service summary[0m
+9 Wed Jun 24 18:49:25 CEST 2020 JavaFX Application Thread INFO: Attempting to save new service summary[0m
+10 Wed Jun 24 18:49:25 CEST 2020 JavaFX Application Thread INFO: Added new service summary[0m
+11 Wed Jun 24 18:49:25 CEST 2020 JavaFX Application Thread DEBUG: [36mPrimary view initialized[0m
+12 Wed Jun 24 18:49:25 CEST 2020 JavaFX Application Thread INFO: Showing scene id: 0[0m
+13 Wed Jun 24 18:49:30 CEST 2020 JavaFX Application Thread INFO: Fetching service summaries for vehicle: EF-ABC[0m
+14 Wed Jun 24 18:49:30 CEST 2020 JavaFX Application Thread DEBUG: [36mSearch result for: EF-ABC [ServiceSummary{id=1, date=2020-06-24, title='Engine test', description='Tested engine parameters, changed oil', approved=false}, ServiceSummary{id=2, date=2019-10-21, title='Changed elevator', description='Elevator got replaced with a new one.', approved=false}][0m
+15 Wed Jun 24 18:49:33 CEST 2020 JavaFX Application Thread INFO: Window closing[0m
+16 Wed Jun 24 18:49:33 CEST 2020 JavaFX Application Thread INFO: Logger service shutting down[0m

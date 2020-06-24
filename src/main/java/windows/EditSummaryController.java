@@ -7,12 +7,15 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import logging.Logger;
 import logging.SeverityType;
@@ -69,6 +72,7 @@ public class EditSummaryController implements Initializable {
         table.refresh();
     }
 
+
     public void onCancelButtonPressed() {
         Platform.exit();
     }
@@ -93,6 +97,12 @@ public class EditSummaryController implements Initializable {
         table.getColumns().add(colTitle);
         table.getColumns().add(colApproved);
         Logger.getInstance().print("Primary view initialized", SeverityType.DEBUG);
+
+        regNumSearchField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER){
+                onSearchButtonPressed();
+            }
+        });
     }
 
     public EditSummarySecondController getSecondController() {
