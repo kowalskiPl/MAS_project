@@ -108,4 +108,12 @@ public class HibernateDBUtil {
             Logger.getInstance().print("Updated summary id: " + summary.getId(), SeverityType.INFO);
         }
     }
+
+    public static ServiceSummary getServiceSummary(long id){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Logger.getInstance().print("Fetching Service summary id: " + id, SeverityType.INFO);
+            return session.createQuery("from serviceSummary ss where ss.id = :id", ServiceSummary.class)
+                    .setParameter("id", id).list().get(0);
+        }
+    }
 }

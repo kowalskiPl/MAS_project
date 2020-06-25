@@ -25,8 +25,8 @@ public class Client extends Person {
     public Client() {
     }
 
-    public Client(String firstName, String secondName, String phoneNumber, Address address) {
-        super(firstName, secondName);
+    public Client(String firstName, String lastName, String phoneNumber, Address address) {
+        super(firstName, lastName);
         this.phoneNumber = phoneNumber;
         this.address = address;
         address.addClient(this);

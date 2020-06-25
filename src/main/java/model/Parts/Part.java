@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
-public class Part {
+public class Part implements Comparable<Part>{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -70,5 +70,10 @@ public class Part {
 
     public void setUsageTime(int usageTime) {
         this.usageTime = usageTime;
+    }
+
+    @Override
+    public int compareTo(Part o) {
+        return Long.compare(this.id, o.id);
     }
 }

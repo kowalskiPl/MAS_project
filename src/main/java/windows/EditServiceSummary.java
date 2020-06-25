@@ -16,6 +16,8 @@ import model.Person.Address;
 import model.Person.Client;
 import model.ServiceSummary;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,30 +30,27 @@ public class EditServiceSummary extends Application {
     private static int currentView = 0;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Address address = new Address("Szlifierska 21/31", "Warsaw", "01-461");
-        Client client = new Client("John", "Doe", "608810369", address);
-        HibernateDBUtil.saveNewClient(client, address);
-        Airplane airplane = new Airplane();
-        airplane.setRegistrationNumber("EF-ABC");
-        Helicopter helicopter = new Helicopter();
-        HibernateDBUtil.addVehicleToClient(1, airplane);
-        HibernateDBUtil.addVehicleToClient(1, helicopter);
-
-        ServiceSummary serviceSummary = new ServiceSummary(new Date(), "Engine test", "Tested engine parameters, changed oil");
-        HibernateDBUtil.saveVehicleServiceSummary(1, serviceSummary);
-        ServiceSummary summary = new ServiceSummary(new SimpleDateFormat("dd-MM-yyyy")
-                .parse("21-10-2019"), "Changed elevator", "Elevator got replaced with a new one.");
-        HibernateDBUtil.saveVehicleServiceSummary(1, summary);
-
-
+    public void start(Stage primaryStage) {
+        try {
+            prepareData();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         FXMLLoader lod = new FXMLLoader();
-        views.add(lod.load(getClass().getResource("/edit_service_summary.fxml").openStream()));
+        try {
+            views.add(lod.load(getClass().getResource("/edit_service_summary.fxml").openStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         EditSummaryController con = lod.getController();
 
         FXMLLoader loader = new FXMLLoader();
-        views.add(loader.load(getClass().getResource("/edit_service_second.fxml").openStream()));
+        try {
+            views.add(loader.load(getClass().getResource("/edit_service_second.fxml").openStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         EditSummarySecondController c = loader.getController();
         con.setSecondController(c);
         c.setController(con);
@@ -88,5 +87,39 @@ public class EditServiceSummary extends Application {
         super.stop();
         Logger.getInstance().print("Window closing", SeverityType.INFO);
         Logger.getInstance().deinitialize();
+    }
+
+    private void prepareData() throws ParseException {
+        Address address = new Address("Szlifierska 21/31", "Warsaw", "01-461");
+        Client client = new Client("John", "Doe", "608810369", address);
+        Address address1 = new Address("Kluczborska 11/16", "Warsaw", "01-461");
+        Client client1 = new Client("Kurt", "Tank", "608810369", address);
+        HibernateDBUtil.saveNewClient(client, address);
+        HibernateDBUtil.saveNewClient(client1, address1);
+        Airplane airplane = new Airplane();
+        airplane.setRegistrationNumber("SP-ABC");
+        Helicopter helicopter = new Helicopter();
+        helicopter.setRegistrationNumber("SP-KEKW");
+        HibernateDBUtil.addVehicleToClient(1, airplane);
+        HibernateDBUtil.addVehicleToClient(2, helicopter);
+
+        ServiceSummary serviceSummary = new ServiceSummary(new Date(), "Engine test", "Tested engine parameters, changed oil");
+        HibernateDBUtil.saveVehicleServiceSummary(1, serviceSummary);
+        ServiceSummary summary = new ServiceSummary(new SimpleDateFormat("dd-MM-yyyy")
+                .parse("21-10-2019"), "Changed elevator", "Elevator got replaced with a new one.");
+        HibernateDBUtil.saveVehicleServiceSummary(1, summary);
+
+        ServiceSummary serviceHeli_1 = new ServiceSummary(new SimpleDateFormat("dd-MM-yyyy")
+                .parse("11-07-2018"), "Replaced main rotor blade", "Blade number 3 was damaged after a collision with bird" +
+                "so it got replaced with a new one", true);
+
+        ServiceSummary serviceHeli_2 = new ServiceSummary(new Date(), "Changed engine oil", "A regular scheduled oil change in both engines");
+        ServiceSummary serviceHeli_3 = new ServiceSummary(new SimpleDateFormat("dd-MM-yyyy")
+                .parse("14-04-2020"), "Right engine replaced", "After mechanical failure right engine compressor got completely" +
+                "destroyed and engine had to be replaced with new one");
+
+        HibernateDBUtil.saveVehicleServiceSummary(2, serviceHeli_1);
+        HibernateDBUtil.saveVehicleServiceSummary(2, serviceHeli_2);
+        HibernateDBUtil.saveVehicleServiceSummary(2, serviceHeli_3);
     }
 }

@@ -12,7 +12,7 @@ import java.util.*;
 
 @Entity(name = "vehicle")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Vehicle {
+public abstract class Vehicle implements Comparable<Vehicle>{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -220,5 +220,10 @@ public abstract class Vehicle {
                 ", manufacturer=" + manufacturer +
                 ", engines=" + engines +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Vehicle o) {
+        return Long.compare(this.id, o.id);
     }
 }

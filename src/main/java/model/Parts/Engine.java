@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity(name = "Engine")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Engine extends Part {
+public class Engine extends Part{
 
     protected double power;
 

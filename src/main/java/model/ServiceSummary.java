@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "serviceSummary")
-public class ServiceSummary {
+public class ServiceSummary implements Comparable<ServiceSummary>{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -105,5 +105,10 @@ public class ServiceSummary {
                 ", description='" + description + '\'' +
                 ", approved=" + approved +
                 '}';
+    }
+
+    @Override
+    public int compareTo(ServiceSummary o) {
+        return Long.compare(this.id, o.id);
     }
 }

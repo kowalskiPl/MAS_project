@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,6 +23,7 @@ import logging.SeverityType;
 import model.ServiceSummary;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -46,7 +48,7 @@ public class EditSummaryController implements Initializable {
     public void onEditButtonPressed() {
         if (table.getSelectionModel().selectedIndexProperty().get() >= 0){
             Logger.getInstance().print("Edit button pressed", SeverityType.DEBUG);
-            ServiceSummary summary = EditServiceSummary.getSummaries().get(table.getSelectionModel().selectedIndexProperty().get());
+            ServiceSummary summary = HibernateDBUtil.getServiceSummary(table.getSelectionModel().getSelectedItem().getId());
             EditServiceSummary.setView(1);
             secondController.setApproved(summary.isApproved()? "YES" : "NO");
             secondController.setDate(summary.getDate().toString());
@@ -61,6 +63,7 @@ public class EditSummaryController implements Initializable {
      * Searches for summaries for given registration number
      */
     public void onSearchButtonPressed() {
+        EditServiceSummary.setSummaries(new ArrayList<>());
         observableList.clear();
         List<ServiceSummary> things = HibernateDBUtil.searchServiceSummaries(regNumSearchField.getText());
         Logger.getInstance().print("Search result for: " + regNumSearchField.getText() + " " + things.toString(), SeverityType.DEBUG);
@@ -96,13 +99,20 @@ public class EditSummaryController implements Initializable {
         table.getColumns().add(colDate);
         table.getColumns().add(colTitle);
         table.getColumns().add(colApproved);
-        Logger.getInstance().print("Primary view initialized", SeverityType.DEBUG);
-
         regNumSearchField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER){
                 onSearchButtonPressed();
             }
         });
+        table.setRowFactory(tr ->{
+            TableRow<ModelTable> row = new TableRow<>();
+            row.setOnMouseClicked(event ->{
+                if (event.getClickCount() == 2 && (!row.isEmpty()))
+                    onEditButtonPressed();
+            });
+            return row;
+        });
+        Logger.getInstance().print("Primary view initialized", SeverityType.DEBUG);
     }
 
     public EditSummarySecondController getSecondController() {

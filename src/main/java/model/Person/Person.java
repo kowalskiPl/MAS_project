@@ -6,7 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @MappedSuperclass
-public abstract class Person {
+public abstract class Person implements Comparable<Person>{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -38,5 +38,10 @@ public abstract class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        return Long.compare(this.id, o.id);
     }
 }
